@@ -2,10 +2,7 @@
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
-local attackBtn = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-    :WaitForChild("gameUI")
-    :WaitForChild("mobileButtons")
-    :WaitForChild("attack")
+local attackBtn = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("gameUI"):WaitForChild("mobileButtons"):WaitForChild("attack")
 local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 
 -- Replace 'hitbox' with the correct part if needed (e.g., HumanoidRootPart)
