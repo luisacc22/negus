@@ -1,4 +1,6 @@
 -- version negus 1.1
+local allowedPlaceId = 8030843929
+if game.PlaceId ~= allowedPlaceId then return end
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
