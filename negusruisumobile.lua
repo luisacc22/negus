@@ -1,22 +1,20 @@
 -- version negus 1.1
+task.wait(16)
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
-local attackBtn = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("gameUI"):WaitForChild("mobileButtons"):WaitForChild("attack")
+local VirtualInputManager = game:GetService("VirtualInputManager")
 local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 
 -- Replace 'hitbox' with the correct part if needed (e.g., HumanoidRootPart)
 local teleportPart = character:WaitForChild("hitbox")
 
 task.spawn(function()
-	while true do
-		task.wait(0.1) 
-		if attackBtn and attackBtn.Visible then
-			attackBtn:Activate()
-		end
+	while task.wait(0.1) do -- adjust delay if needed
+		VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+		VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
 	end
 end)
-
 --auto start
 game:GetService("ReplicatedStorage"):WaitForChild("network"):WaitForChild("RemoteFunction"):WaitForChild("playerRequest_readyUp"):InvokeServer()
 
