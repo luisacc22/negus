@@ -1,11 +1,19 @@
+-- version negus 1.1
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
+local VirtualInputManager = game:GetService("VirtualInputManager")
 local ReplicatedStorage = cloneref(game:GetService("ReplicatedStorage"))
 
 -- Replace 'hitbox' with the correct part if needed (e.g., HumanoidRootPart)
 local teleportPart = character:WaitForChild("hitbox")
 
+task.spawn(function()
+	while task.wait(0.1) do -- adjust delay if needed
+		VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+		VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
+	end
+end)
 --auto start
 game:GetService("ReplicatedStorage"):WaitForChild("network"):WaitForChild("RemoteFunction"):WaitForChild("playerRequest_readyUp"):InvokeServer()
 
@@ -87,5 +95,4 @@ task.wait(1)
 game:GetService("ReplicatedStorage"):WaitForChild("network"):WaitForChild("RemoteFunction"):WaitForChild("playerRequest_respawnMyCharacter"):InvokeServer()
 
 game:GetService("ReplicatedStorage"):WaitForChild("network"):WaitForChild("RemoteFunction"):WaitForChild("playerRequest_replayDungeon"):InvokeServer()
-
 
